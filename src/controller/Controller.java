@@ -49,7 +49,7 @@ public class Controller extends JPanel{
 		g2d.drawString(salt, 10, 20);
 		for(int i=0; i<game.getPossibleHazards().getHazardsList().size(); i++){
 			if(game.getPossibleHazards().getHazardsList().get(i).getSpawntime() < count)
-				game.getPossibleHazards().getHazardsList().get(i).setxpos(400);
+				//game.getPossibleHazards().getHazardsList().get(i).setxpos(400);
 			//System.out.println("Spawning Hazard... x: " + game.getPossibleHazards().getHazardsList().get(i).getXpos() + "y: " + 
 				//	game.getPossibleHazards().getHazardsList().get(i).getYpos());
 			g2d.drawOval(game.getPossibleHazards().getHazardsList().get(i).getxpos()+300, game.getPossibleHazards().getHazardsList().get(i).getypos(), 20, 20);
@@ -91,9 +91,11 @@ public class Controller extends JPanel{
 	
 	public void update(){
 		count++;
-		System.out.println("Count: " + count);
+		//System.out.println("Count: " + count);
 		for(int i = 0; i<game.getPossibleHazards().getHazardsList().size(); i++){
+			if(game.getPossibleHazards().getHazardsList().get(i).getSpawntime() < count) {
 			game.getPossibleHazards().getHazardsList().get(i).moveLeft();
+			}
 		}
 		repaint();
 		saltOnMovement();
