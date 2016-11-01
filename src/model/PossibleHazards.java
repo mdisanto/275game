@@ -19,26 +19,28 @@ public class PossibleHazards{
 	}
 	public void generateHazards(){
 		Random gen = new Random();
-		int spawnwindow = 500;
+		int spawnwindow = 15000;
 		for(int i=0; i<hazard_num; i++){
+			int spawnInt = gen.nextInt(spawnwindow);
+			System.out.println("Spawn: " + spawnInt);
 			switch(gen.nextInt(6)){
 			case 0:
-				hazards.add( new Enemy1(350, gen.nextInt(350)+1, 1, 0, gen.nextInt(spawnwindow)));
+				hazards.add( new Enemy1(350, gen.nextInt(350)+1, 1, 0, 1000));
 				break;
 			case 1:
-				hazards.add(new Enemy2(350, gen.nextInt(350)+1, 1, 0, gen.nextInt(spawnwindow)));
+				hazards.add(new Enemy2(350, gen.nextInt(350)+1, 1, 0, 3000));
 				break;
 			case 2:
-				hazards.add(new Enemy3(350, gen.nextInt(350)+1, 1, 0, gen.nextInt(spawnwindow)));
+				hazards.add(new Enemy3(350, gen.nextInt(350)+1, 1, 0, 1000));
 				break;
 			case 3:
-				hazards.add(new Trash(350, gen.nextInt(350)+1, 1, 0, gen.nextInt(spawnwindow), Tool.TRASH));
+				hazards.add(new Trash(350, gen.nextInt(350)+1, 1, 0, 3000, Tool.TRASH));
 				break;
 			case 4:
-				hazards.add(new Trash(350, gen.nextInt(350)+1, 1, 0, gen.nextInt(spawnwindow), Tool.RECYCLE));
+				hazards.add(new Trash(350, gen.nextInt(350)+1, 1, 0, 3000, Tool.RECYCLE));
 				break;
 			case 5:
-				hazards.add(new Trash(350, gen.nextInt(350)+1, 1, 0, gen.nextInt(spawnwindow), Tool.COMPOST));
+				hazards.add(new Trash(350, gen.nextInt(350)+1, 1, 0, 3000, Tool.COMPOST));
 				break;
 			}
 			

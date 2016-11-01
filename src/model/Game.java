@@ -54,15 +54,22 @@ public class Game {
 //    }
 	public boolean isGameOver(){
 		if(player.isSalOver()){
+			System.out.println("Salt");
 			return true;
 		}
 		else if(player.isSalUnder()){
+			System.out.println("Salt");
 			return true;
 		}
 		else if(player.getLife()<=0){
+			System.out.println("Collision");
 			return true;
 		}
 		return false;
+	}
+	
+	public Board getBoard() {
+		return this.board;
 	}
 
 	

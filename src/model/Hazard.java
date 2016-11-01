@@ -35,12 +35,14 @@ public int getxpos() {
 }
 public void setxpos(int xpos) {
 	this.xpos = xpos;
+	super.setXpos(xpos);
 }
 public int getypos() {
 	return ypos;
 }
 public void setypos(int ypos) {
 	this.ypos = ypos;
+	super.setYpos(ypos);
 }
 public int getxvel() {
 	return xvel;

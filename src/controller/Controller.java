@@ -48,8 +48,11 @@ public class Controller extends JPanel{
 		salt = salt + game.getPlayer().getSalinity();
 		g2d.drawString(salt, 10, 20);
 		for(int i=0; i<game.getPossibleHazards().getHazardsList().size(); i++){
-			if(game.getPossibleHazards().getHazardsList().get(i).getSpawntime() <= count)
-			g2d.drawOval(game.getPossibleHazards().getHazardsList().get(i).getxpos(), game.getPossibleHazards().getHazardsList().get(i).getypos(), 20, 20);
+			if(game.getPossibleHazards().getHazardsList().get(i).getSpawntime() < count)
+				game.getPossibleHazards().getHazardsList().get(i).setxpos(400);
+			//System.out.println("Spawning Hazard... x: " + game.getPossibleHazards().getHazardsList().get(i).getXpos() + "y: " + 
+				//	game.getPossibleHazards().getHazardsList().get(i).getYpos());
+			g2d.drawOval(game.getPossibleHazards().getHazardsList().get(i).getxpos()+300, game.getPossibleHazards().getHazardsList().get(i).getypos(), 20, 20);
 		}
 		int x=20;
 		for(int i=0; i<game.getPlayer().getLife(); i++){
@@ -60,12 +63,41 @@ public class Controller extends JPanel{
 			g2d.drawString("GAME OVER", 150, 150);
 		}
 	}
+	
+	public void onCollision(){
+		for(int i=0; i<game.getPossibleHazards().getHazardsList().size(); i++){
+			if(game.getPossibleHazards().getHazardsList().get(i).getXpos()>=game.getPlayer().getXpos()-20
+					&&game.getPossibleHazards().getHazardsList().get(i).getXpos()<=game.getPlayer().getXpos()+30
+					&&game.getPossibleHazards().getHazardsList().get(i).getYpos()>=game.getPlayer().getYpos()-20&&
+					game.getPossibleHazards().getHazardsList().get(i).getYpos()<=game.getPlayer().getYpos()+30){
+				System.out.println("One less life");
+				game.getPossibleHazards().getHazardsList().get(i).setXpos(900);
+				game.getPossibleHazards().getHazardsList().get(i).setYpos(900);
+				game.getPlayer().setLife(game.getPlayer().getLife()-1);
+			}
+		}
+	}
+	
+	public void saltOnMovement() {
+		double xsaltindexprep = game.getPlayer().getXpos()/((double)game.FRAMEWIDTH);
+		int xsaltindex = (int) (40*xsaltindexprep);
+		double ysaltindexprep = game.getPlayer().getYpos()/((double) game.FRAMEHEIGHT);
+		int ysaltindex = (int) (20*ysaltindexprep);
+		game.getPlayer().setSaldelta(game.getBoard().getTile(xsaltindex, ysaltindex));
+		System.out.print(xsaltindexprep+" ");
+		System.out.println(game.getPlayer().getXpos());
+		game.getPlayer().updateSalinity();
+	}
+	
 	public void update(){
 		count++;
+		System.out.println("Count: " + count);
 		for(int i = 0; i<game.getPossibleHazards().getHazardsList().size(); i++){
 			game.getPossibleHazards().getHazardsList().get(i).moveLeft();
 		}
 		repaint();
+		saltOnMovement();
+		onCollision();
 	}
     private int getCount() {
 		// TODO Auto-generated method stub
