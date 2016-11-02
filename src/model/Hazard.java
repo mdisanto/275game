@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Rectangle;
+
 public class Hazard extends Movers{
   int spawntime;
 
@@ -13,6 +15,10 @@ public class Hazard extends Movers{
 
 public int getSpawntime() {
 	return spawntime;
+}
+
+public Rectangle getBounds(){
+	return new Rectangle(xpos,ypos,20,20);
 }
 
 

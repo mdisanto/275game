@@ -66,10 +66,7 @@ public class Controller extends JPanel{
 	
 	public void onCollision(){
 		for(int i=0; i<game.getPossibleHazards().getHazardsList().size(); i++){
-			if(game.getPossibleHazards().getHazardsList().get(i).getXpos()>=game.getPlayer().getXpos()-20
-					&&game.getPossibleHazards().getHazardsList().get(i).getXpos()<=game.getPlayer().getXpos()+30
-					&&game.getPossibleHazards().getHazardsList().get(i).getYpos()>=game.getPlayer().getYpos()-20&&
-					game.getPossibleHazards().getHazardsList().get(i).getYpos()<=game.getPlayer().getYpos()+30){
+			if(game.getPossibleHazards().getHazardsList().get(i).getBounds().intersects(game.getPlayer().getBounds())){
 				System.out.println("One less life");
 				game.getPossibleHazards().getHazardsList().get(i).setXpos(900);
 				game.getPossibleHazards().getHazardsList().get(i).setYpos(900);
@@ -98,7 +95,7 @@ public class Controller extends JPanel{
 			}
 		}
 		repaint();
-		saltOnMovement();
+		//saltOnMovement();
 		onCollision();
 	}
     private int getCount() {

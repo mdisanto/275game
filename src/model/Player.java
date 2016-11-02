@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Rectangle;
+
 public class Player extends Movers{
 	 int salinity ;
 	 int salmin ;
@@ -34,6 +36,10 @@ public class Player extends Movers{
 
 	public void setXpos(int xpos) {
 		this.xpos = xpos;
+	}
+	
+	public Rectangle getBounds(){
+		return new Rectangle(xpos,ypos,30,30);
 	}
 
 	public int getYpos() {
